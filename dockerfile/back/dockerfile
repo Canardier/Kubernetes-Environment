@@ -1,0 +1,11 @@
+FROM alpine:3.14
+
+WORKDIR /cruise_api
+VOLUME /cruise_api
+
+RUN apk add --update python3 py3-pip
+RUN pip install Flask
+RUN pip install -U flask-cors
+RUN pip install flask-mysql
+
+COPY "./app" "/cruise_api"

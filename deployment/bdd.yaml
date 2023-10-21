@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  labels:
+    app: db
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: canardier/cruise:db
+        ports:
+        - containerPort: 3366
+      nodeName: worker-1
+      volumes:
+      - name: pv-myapi
+        persistentVolumeClaim:
+          claimName: bdd-volume

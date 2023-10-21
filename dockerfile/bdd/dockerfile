@@ -1,0 +1,22 @@
+FROM alpine:3.14
+
+WORKDIR /cruise_db
+VOLUME /cruise_db
+
+RUN apk add --update mysql mysql-client && rm -f /var/cache/apk/*
+
+# ENV VAR
+ENV MYSQL_DATABASE cruise_db
+
+# PORT EXPOSED
+EXPOSE 3306
+
+# CONFIG MYSQL
+COPY "./scripts/init_mysql.sh" "/scripts/init_mysql.sh"
+COPY "./config/my.cnf" "/etc/mysql/my.cnf"
+COPY "./scripts/entrypoint_access.sh" "/scripts/entrypoint_access.sh"
+
+# ADD SQL SCRIPT
+COPY "/cruise.sql/" "/docker-entrypoint-initdb.d/cruise_db"
+
+CMD ["/scripts/init_mysql.sh"]
