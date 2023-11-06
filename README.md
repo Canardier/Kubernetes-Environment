@@ -45,21 +45,21 @@ Uninstall pods `kubectl delete -k ./`<br>
 `kubectl get nodes`
 
 ## Setup monitoring
-`kubectl create namespace monitoring`
-`kubectl apply -f /vagrant/deployment/monitoring/`
-`kubectl create deployment grafana -n monitoring --image=docker.io/grafana/grafana:latest`
-`kubectl -n monitoring expose deployment grafana --type="NodePort" --port 3000`
-`kubectl create deployment loki -n monitoring --image=docker.io/grafana/loki:main`
-`kubectl -n monitoring expose deployment loki --type="NodePort" --port 3100`
-`kubectl create deployment promtail -n monitoring --image=docker.io/grafana/promtail:main`
-`kubectl -n monitoring expose deployment promtail --type="NodePort" --port 3101`
+`kubectl create namespace monitoring`<br>
+`kubectl apply -f /vagrant/deployment/monitoring/`<br>
+`kubectl create deployment grafana -n monitoring --image=docker.io/grafana/grafana:latest`<br>
+`kubectl -n monitoring expose deployment grafana --type="NodePort" --port 3000`<br>
+`kubectl create deployment loki -n monitoring --image=docker.io/grafana/loki:main`<br>
+`kubectl -n monitoring expose deployment loki --type="NodePort" --port 3100`<br>
+`kubectl create deployment promtail -n monitoring --image=docker.io/grafana/promtail:main`<br>
+`kubectl -n monitoring expose deployment promtail --type="NodePort" --port 3101`<br>
 
 
-`kubectl get svc -n monitoring` => get external port
-visit prom http://192.168.50.10:30000/
-visit graphana http://192.168.50.10:32391/
-visit loki http://192.168.50.10:30399
+`kubectl get svc -n monitoring` => get external port<br>
+visit prom http://192.168.50.10:30000/<br>
+visit graphana http://192.168.50.10:32391/<br>
+visit loki http://192.168.50.10:30399<br><br>
 
-add prom public url to graphana source
+add prom public url to graphana source<br><br>
 
 loki 12019
